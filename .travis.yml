@@ -1,4 +1,14 @@
 language: java
 jdk: openjdk11
+
+before_script:
+  - bash <(curl -Ls https://coverage.codacy.com/get.sh) download
+
 before_install:
   - chmod +x mvnw
+
+script:
+  - ./mvnw clean verify -Pintegration-tests
+
+after_success:
+  - bash <(curl -L https://coverage.codacy.com/get.sh)
