@@ -9,7 +9,7 @@ before_install:
 
 script:
   - ./mvnw clean verify -Pintegration-tests
-  - bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r target/site/jacoco/jacoco.xml
+  - bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r jacoco*.xml
 
 after_success:
   - bash <(curl -L https://coverage.codacy.com/get.sh)
