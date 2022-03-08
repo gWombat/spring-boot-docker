@@ -8,6 +8,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -26,9 +27,11 @@ class HelloControllerTest {
     @Test
     void hello_controller_OK() throws Exception {
         doReturn("Hello John").when(helloService).hello(anyString());
-        mockMvc.perform(get("/hello?name=John"))
+        var mvcResult = mockMvc.perform(get("/hello?name=John"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Hello John")));
+                .andExpect(content().string(containsString("Hello John")))
+                .andReturn();
+        assertEquals(200, mvcResult.getResponse().getStatus());
     }
 }
