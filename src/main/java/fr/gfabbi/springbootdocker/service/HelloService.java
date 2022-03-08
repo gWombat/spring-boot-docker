@@ -6,7 +6,14 @@ import org.springframework.util.StringUtils;
 @Service
 public class HelloService {
 
-    public String hello(String name){
+    /**
+     * Says hello to the person specified by the given name
+     *
+     * @param name
+     *         the name to welcome
+     * @return a welcome to the given name
+     */
+    public String hello(String name) {
         if (StringUtils.hasText(name)) {
             return "Hello " + name;
         }
