@@ -11,7 +11,8 @@ before_script:
 before_install:
   - chmod +x mvnw
 
-install:
+install: skip
+script:
   - ./mvnw clean verify -Pintegration-tests
 
 after_success:
